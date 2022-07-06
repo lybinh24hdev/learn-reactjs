@@ -1,19 +1,23 @@
-import ExpenseForm from './ExpenseForm';
-import './NewExpense.css'
-
+import { useState } from "react";
+import ExpenseForm from "./ExpenseForm";
+import "./NewExpense.css";
 
 const NewExpense = (props) => {
+  const [form, setForm] = useState(false);
 
-    const dataHandler = data => {
-        const expenseData = {...data, id: Math.random().toFixed(5).toString(),};
-        props.onSaveData(expenseData);
-    }
+  const dataHandler = (data) => {
+    const expenseData = { ...data, id: Math.random().toString() };
+    props.onSaveData(expenseData);
+  };
+  const cancelHandler = () => setForm(false);
 
-    return (
-        <div className="new-expense">
-            <ExpenseForm onSubmitData={dataHandler}/>
-        </div>
-    )
-}
+  const formContent = !form ? (
+    <button onClick={() => setForm(true)}>Add New Expense</button>
+  ) : (
+    <ExpenseForm onCancel={cancelHandler} onSubmitData={dataHandler} />
+  );
+
+  return <div className="new-expense">{formContent}</div>;
+};
 
 export default NewExpense;
