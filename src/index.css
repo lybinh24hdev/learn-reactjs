@@ -3,7 +3,9 @@
 }
 
 html {
+  min-height: 100vh;
   font-family: sans-serif;
+  background-image: linear-gradient(180deg, #FBC5C5, #377D71);
 }
 
 body {
