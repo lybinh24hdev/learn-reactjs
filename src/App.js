@@ -1,21 +1,22 @@
-import React, { useState } from "react";
-import AddUser from "./components/Users/AddUser";
+import React, { useContext } from "react";
 
-import "./App.css";
-import UsersList from "./components/Users/UsersList";
+import Login from "./components/Login/Login";
+import Home from "./components/Home/Home";
+import MainHeader from "./components/MainHeader/MainHeader";
+import AuthContext from "./context/AuthContext";
 
-const App = () => {
-  const [users, setUsers] = useState([]);
-  const submitFormHandler = (data) => {
-    setUsers((prev) => [...prev, data]);
-  };
+function App() {
+  const ctx = useContext(AuthContext)
 
   return (
-    <div>
-      <AddUser onSubmitForm={submitFormHandler} />
-      <UsersList users={users} />
-    </div>
+    <>
+      <MainHeader/>
+      <main>
+        {!ctx.isLoggedIn && <Login />}
+        {ctx.isLoggedIn && <Home />}
+      </main>
+    </>
   );
-};
+}
 
 export default App;
