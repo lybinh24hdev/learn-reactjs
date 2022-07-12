@@ -7,8 +7,12 @@ import CartItem from "./CartItem";
 const Cart = (props) => {
   const ctx = useContext(CartContext);
   const totalAmount = ctx.totalAmount.toFixed(2);
-  const cartItemAddHandler = (item) => {};
-  const cartItemRemoveHandler = (id) => {};
+  const cartItemAddHandler = (item) => {
+    ctx.addItem(item)
+  };
+  const cartItemRemoveHandler = (id) => {
+    ctx.removeItem(id)
+  };
 
   const cartItem = (
     <ul className={classes["cart-items"]}>
@@ -18,8 +22,8 @@ const Cart = (props) => {
           name={item.name}
           price={item.price}
           amount={item.amount}
-          onAdd={cartItemAddHandler}
-          onRemove={cartItemRemoveHandler}
+          onAdd={cartItemAddHandler.bind(null, item)}
+          onRemove={cartItemRemoveHandler.bind(null, item.id)}
         />
       ))}
     </ul>
@@ -37,7 +41,7 @@ const Cart = (props) => {
           Close
         </button>
         {+totalAmount !== 0 ? (
-          <button className={classes.button}>Order</button>
+          <button className={classes.button} >Order</button>
         ) : (
           true
         )}
