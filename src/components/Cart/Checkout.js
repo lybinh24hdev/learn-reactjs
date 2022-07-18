@@ -36,8 +36,17 @@ const Checkout = (props) => {
       city: cityIsValid,
     });
 
-    const formIsValid =
-      nameIsValid && streetIsValid && postalIsValid && cityIsValid;
+    // const formIsValid =
+    //   nameIsValid && streetIsValid && postalIsValid && cityIsValid;
+
+    // if (formIsValid) alert('ordered');
+
+    props.onConfirm({
+      name:enteredName,
+      street: enteredStreet,
+      postal: enteredPostal,
+      city:enteredCity
+    })
   };
   const nameClasses = `${classes.control} ${
     !formValidity.name ? classes.invalid : ""
