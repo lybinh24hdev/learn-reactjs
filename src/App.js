@@ -1,35 +1,23 @@
-import { useContext } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import React, { useContext } from "react";
 
-import Layout from "./components/Layout/Layout";
-import UserProfile from "./components/Profile/UserProfile";
-import AuthPage from "./pages/AuthPage";
-import HomePage from "./pages/HomePage";
-import AuthContext from "./store/auth-context";
+import "./App.css";
+import Modal from "./components/Modal/Modal";
+import Backdrop from "./components/Backdrop/Backdrop";
+import List from "./components/List/List";
+import Context from "./store/context";
 
-function App() {
-  const ctx = useContext(AuthContext);
+const App = () => {
+  const ctx = useContext(Context)
   return (
-    <Layout>
-      <Switch>
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
-        {!ctx.isLoggedIn && (
-          <Route path="/auth">
-            <AuthPage />
-          </Route>
-        )}
-        <Route path="/profile">
-          {ctx.isLoggedIn && <UserProfile />}
-          {!ctx.isLoggedIn && <Redirect to="/auth" />}
-        </Route>
-        <Route path="*">
-          <Redirect to="/" />
-        </Route>
-      </Switch>
-    </Layout>
+    <div className="App">
+      <h1>React Animations</h1>
+      <Modal />
+      <Backdrop />
+      <button className="Button" onClick={() => ctx.open()}>Open Modal</button>
+      <h3>Animating Lists</h3>
+      <List />
+    </div>
   );
-}
+};
 
 export default App;
