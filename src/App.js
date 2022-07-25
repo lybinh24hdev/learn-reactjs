@@ -1,22 +1,19 @@
-import React, { useContext } from "react";
+import React from 'react';
+import { Route } from 'react-router-dom';
 
-import "./App.css";
-import Modal from "./components/Modal/Modal";
-import Backdrop from "./components/Backdrop/Backdrop";
-import List from "./components/List/List";
-import Context from "./store/context";
+import Navigation from './components/Nav/Navigation';
+import ProductsPage from './containers/Products';
+import FavoritesPage from './containers/Favorites';
 
-const App = () => {
-  const ctx = useContext(Context)
+const App = props => {
   return (
-    <div className="App">
-      <h1>React Animations</h1>
-      <Modal />
-      <Backdrop />
-      <button className="Button" onClick={() => ctx.open()}>Open Modal</button>
-      <h3>Animating Lists</h3>
-      <List />
-    </div>
+    <React.Fragment>
+      <Navigation />
+      <main>
+        <Route path="/" component={ProductsPage} exact />
+        <Route path="/favorites" component={FavoritesPage} />
+      </main>
+    </React.Fragment>
   );
 };
 

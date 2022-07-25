@@ -1,13 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+
 import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-import { ContextProvider } from './store/context';
+import ProductsProvider from './components/context/products-context';
 
-// ReactDOM.render(<App />, document.getElementById('root'));
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<ContextProvider><App /></ContextProvider>);
-
-registerServiceWorker();
+ReactDOM.render(
+  <ProductsProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </ProductsProvider>,
+  document.getElementById("root")
+);
