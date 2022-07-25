@@ -1,20 +1,14 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import './App.css';
+import Async from './components/Async/Async';
+import Greeting from './components/Greeting/Greeting';
 
-import Navigation from './components/Nav/Navigation';
-import ProductsPage from './containers/Products';
-import FavoritesPage from './containers/Favorites';
-
-const App = props => {
+function App() {
   return (
-    <React.Fragment>
-      <Navigation />
-      <main>
-        <Route path="/" component={ProductsPage} exact />
-        <Route path="/favorites" component={FavoritesPage} />
-      </main>
-    </React.Fragment>
+    <div className="App">
+      <Greeting />
+      <Async />
+    </div>
   );
-};
+}
 
 export default App;
